@@ -33,10 +33,7 @@ public class OrganizationRestController {
 				new ResourceNotFoundException("Unable to find organization with id :" + orgId));
 	}
 
-	@RequestMapping(method = RequestMethod.GET, value = "/query")
-	public Page<Organization> searchOrganizations(@RequestParam(value = "search") String search,Pageable pageable){
-		return orgdb.findByNameContaining(search,pageable);
-	}
+
 
     
 }
