@@ -32,7 +32,6 @@ insert into organization VALUES(1,'Google');
 insert into organization VALUES(2,'Facebook');
 insert into organization VALUES(3,'Microsoft');
 insert into organization VALUES(4,'nodejs');
-insert into organization VALUES(5,'org5');
 
 
 insert into platform VALUES(1,'Java');
