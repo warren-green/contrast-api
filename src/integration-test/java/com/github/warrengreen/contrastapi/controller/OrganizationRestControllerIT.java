@@ -38,7 +38,6 @@ public class OrganizationRestControllerIT {
 
     @BeforeEach
     void setup() {
-        restTemplate = new TestRestTemplate();
         appRepo.deleteAllInBatch();
         orgRepo.deleteAllInBatch();
         baseURI = "http://localhost:"+port;
