@@ -47,8 +47,6 @@ public class DatabaseIT {
         assertThat(apps.get(0).getId(), greaterThan(0));
     }
 
-
-
     @Test
     public void findByOrgIdReturnsCorrectApp() {
 
@@ -70,6 +68,64 @@ public class DatabaseIT {
     }
 
 
+    @Test
+    public void findByNameFullName() {
+
+        Application app1 = new Application();
+        Application app2 = new Application(); 
+        
+        app1.setId(1);
+        app1.setName("Kubernetes");
+        app2.setId(2);
+        app2.setName("NixOS Package Collection");
+        appRepo.save(app1);
+        appRepo.save(app2);
+
+        Page<Application> apps = appRepo.findByNameContaining("Kubernetes", PageRequest.of(0,20));
+        assertEquals(apps.getContent().size(),1);
+        assertEquals(apps.getContent().get(0).getName(),"Kubernetes");
+    }
+
+    @Test
+    public void findByPartialNameReturnsCorrectApp() {
+
+        Application app1 = new Application();
+        Application app2 = new Application(); 
+        
+        app1.setId(1);
+        app1.setName("Kubernetes");
+        app2.setId(2);
+        app2.setName("NixOS Package Collection");
+        appRepo.save(app1);
+        appRepo.save(app2);
+
+        Page<Application> apps = appRepo.findByNameContaining("Package", PageRequest.of(0,20));
+        assertEquals(apps.getContent().size(),1);
+        assertEquals(apps.getContent().get(0).getName(),"NixOS Package Collection");
+    }
+
+    @Test
+    public void findByPartialNameReturnsAllMatches() {
+
+        Application app1 = new Application();
+        Application app2 = new Application();
+        Application app3 = new Application(); 
+        
+        app1.setId(1);
+        app1.setName("Microsoft .NET CoreFX");
+        app2.setId(2);
+        app2.setName("Microsoft .NET Roslyn");
+        app3.setId(3);
+        app3.setName("TensorFlow");
+        appRepo.save(app1);
+        appRepo.save(app2);
+        appRepo.save(app3);
+
+        Page<Application> apps = appRepo.findByNameContaining(".NET", PageRequest.of(0,20));
+        assertEquals(apps.getContent().size(),2);
+        assertEquals(apps.getContent().get(0).getName(),"Microsoft .NET CoreFX");
+        assertEquals(apps.getContent().get(1).getName(),"Microsoft .NET Roslyn");
+    }
     
 
 
