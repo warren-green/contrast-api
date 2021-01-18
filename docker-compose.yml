@@ -1,0 +1,34 @@
+version: '3.3'
+services:
+
+  db:
+    container_name: db
+    image: mysql:5.7
+    volumes:
+      - ./sql_scripts:/docker-entrypoint-initdb.d
+      - db_data:/var/lib/mysql
+    restart: always
+    healthcheck:
+        test: ["CMD", "mysqladmin" ,"ping", "-h", "localhost"]
+        timeout: 20s
+        retries: 10
+    environment:
+      - MYSQL_ROOT_PASSWORD=contrast
+      - MYSQL_USER=contrast_user
+      - MYSQL_PASSWORD=contrast_pass
+      - MYSQL_DATABASE=contrast_db
+
+  
+  contrast-app:
+    env_file: docker.env
+    build: 
+      context: ./
+    ports:
+      - 8080:8080
+    container_name: contrast-app
+    depends_on:
+      db:
+          condition: service_healthy
+
+volumes:
+   db_data:
