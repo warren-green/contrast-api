@@ -24,8 +24,8 @@ public class ApplicationRestController {
 		return appdb.findAllByOrganizationId(orgId, pageable);
     }
 
-    @RequestMapping( method = RequestMethod.GET,params="search")
-	public Page<Application> searchApplicationsByName(@RequestParam(value = "search") String search,Pageable pageable){
-		return appdb.findByNameContaining(search,pageable);
+    @RequestMapping( method = RequestMethod.GET,params="query")
+	public Page<Application> searchApplicationsByName(@PathVariable int orgId,@RequestParam(value = "query") String query,Pageable pageable){
+		return appdb.findByOrganizationIdAndNameContaining(orgId,query,pageable);
 	}
 }
