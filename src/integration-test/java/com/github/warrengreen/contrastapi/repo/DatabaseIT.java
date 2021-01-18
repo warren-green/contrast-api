@@ -55,11 +55,10 @@ public class DatabaseIT {
         Organization org1 = new Organization();
         
         app1.setId(1);
-        org1.setId(1);
 
         app1.setOrganization(org1); 
 
-        orgRepo.save(org1);
+        org1 = orgRepo.save(org1);
         appRepo.save(app1);
         appRepo.save(app2);
 
@@ -74,9 +73,7 @@ public class DatabaseIT {
         Application app1 = new Application();
         Application app2 = new Application(); 
         
-        app1.setId(1);
         app1.setName("Kubernetes");
-        app2.setId(2);
         app2.setName("NixOS Package Collection");
         appRepo.save(app1);
         appRepo.save(app2);
@@ -92,9 +89,7 @@ public class DatabaseIT {
         Application app1 = new Application();
         Application app2 = new Application(); 
         
-        app1.setId(1);
         app1.setName("Kubernetes");
-        app2.setId(2);
         app2.setName("NixOS Package Collection");
         appRepo.save(app1);
         appRepo.save(app2);
@@ -111,11 +106,8 @@ public class DatabaseIT {
         Application app2 = new Application();
         Application app3 = new Application(); 
         
-        app1.setId(1);
         app1.setName("Microsoft .NET CoreFX");
-        app2.setId(2);
         app2.setName("Microsoft .NET Roslyn");
-        app3.setId(3);
         app3.setName("TensorFlow");
         appRepo.save(app1);
         appRepo.save(app2);
