@@ -13,4 +13,6 @@ public interface ApplicationRepo extends JpaRepository<Application, Integer>, Jp
 
     Page<Application> findByNameContaining(String search, Pageable pageable);
 
+	Page<Application> findByOrganizationIdAndNameContaining(int orgId, String search, Pageable pageable);
+
 }
