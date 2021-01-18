@@ -15,9 +15,13 @@ The objects relate to each other like so:
 The following API calls are available:
  
 GET /organizations
+
 GET /organizations/{id}
+
 GET /organizations/{id}/applications
+
 GET /organizations/{id}/applications?query=gateway
+
 GET /organizations/{id}/applications?query=gateway&order=’name asc’
 
 ## Compiling the project
