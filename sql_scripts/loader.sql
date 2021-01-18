@@ -40,14 +40,16 @@ insert into platform VALUES(2,'Go');
 insert into platform VALUES(3,'Python');
 insert into platform VALUES(4,'Javascript');
 insert into platform VALUES(5,'.NET');
+insert into platform VALUES(6,'Typescript');
 
-insert into application_table VALUES(1,'Kubernetes',1,1);
-insert into application_table VALUES(2,'React',2,1);
-insert into application_table VALUES(3,'vscode',3,2);
+insert into application_table VALUES(1,'Kubernetes',1,2);
+insert into application_table VALUES(2,'React',2,6);
+insert into application_table VALUES(3,'vscode',3,5);
 insert into application_table VALUES(4,'CoreFX',3,5);
 insert into application_table VALUES(5,'Roslyn',3,5);
 insert into application_table VALUES(6,'Node',4,4);
 insert into application_table VALUES(7,'Tensorflow',1,2);
+insert into application_table VALUES(8,'Kubectl',1,2);
 
 
 
