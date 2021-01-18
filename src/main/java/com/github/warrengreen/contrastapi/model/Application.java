@@ -14,23 +14,23 @@ import lombok.Getter;
 import lombok.Setter;
 
 @Entity
-@Table(name="application_table")
+@Table(name = "application_table")
 @Getter
 @Setter
 public class Application {
-    
-    @Id
+
+	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
-	
+
 	@Column(name = "name", length = 128)
 	private String name;
 
 	@ManyToOne
 	private Platform platform;
 
-    @ManyToOne
-    @JsonIgnore
+	@ManyToOne
+	@JsonIgnore
 	private Organization organization;
 
 }
