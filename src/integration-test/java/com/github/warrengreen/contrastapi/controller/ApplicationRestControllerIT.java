@@ -38,8 +38,8 @@ public class ApplicationRestControllerIT {
 
     @BeforeEach
     void setup() {
-        appRepo.deleteAllInBatch();
-        orgRepo.deleteAllInBatch();
+        appRepo.deleteAll();
+        orgRepo.deleteAll();
         baseURI = "http://localhost:" + port;
     }
 

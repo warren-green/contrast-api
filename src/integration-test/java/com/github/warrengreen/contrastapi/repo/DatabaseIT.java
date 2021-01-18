@@ -28,23 +28,21 @@ public class DatabaseIT {
 
     @BeforeEach
     void setup() {
-        appRepo.flush();
-        appRepo.deleteAllInBatch();
-        appRepo.flush();
+        appRepo.deleteAll();
     }
     
     @Test
     public void dbIsEmpty() {
-        assertEquals(0,appRepo.findAll().size()); 
+        assertEquals(0,appRepo.findAll(PageRequest.of(0,20)).getContent().size()); 
     }
 
     @Test
     public void saveOneApplication() {
         Application app = new Application();  
         appRepo.save(app);
-        List<Application> apps = appRepo.findAll();
-        assertEquals(apps.size(),1); 
-        assertThat(apps.get(0).getId(), greaterThan(0));
+        Page<Application> apps = appRepo.findAll(PageRequest.of(0,20));
+        assertEquals(apps.getContent().size(),1); 
+        assertThat(apps.getContent().get(0).getId(), greaterThan(0));
     }
 
     @Test
