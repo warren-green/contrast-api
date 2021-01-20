@@ -4,7 +4,6 @@ import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.greaterThan;
 import static org.junit.Assert.assertEquals;
 
-import java.util.List;
 
 import com.github.warrengreen.contrastapi.model.Application;
 import com.github.warrengreen.contrastapi.model.Organization;
