@@ -1,11 +1,8 @@
 package com.github.warrengreen.contrastapi.controller;
 
-import java.util.List;
-
 import com.github.warrengreen.contrastapi.model.Application;
-import com.github.warrengreen.contrastapi.repo.ApplicationRepo;
+import com.github.warrengreen.contrastapi.service.ApplicationService;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -16,21 +13,24 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import lombok.AllArgsConstructor;
+
 @RestController
 @RequestMapping("/organizations/{orgId}/applications")
+@AllArgsConstructor
 public class ApplicationRestController {
 
-    @Autowired
-    private ApplicationRepo appdb;
+    
+    private ApplicationService appService;
     
     @RequestMapping( method = RequestMethod.GET)
 	public Page<Application> listApplicationsByOrgId(@PathVariable int orgId,Pageable pageable) {
-		return appdb.findAllByOrganizationId(orgId, pageable);
+		return appService.findAllByOrganizationId(orgId, pageable);
     }
 
     @RequestMapping( method = RequestMethod.GET,params="query")
 	public Page<Application> searchApplicationsByName(@PathVariable int orgId,@RequestParam(value = "query") String query,Pageable pageable){
-		return appdb.findByOrganizationIdAndNameContaining(orgId,query,pageable);
+		return appService.findByOrganizationIdAndNameContaining(orgId,query,pageable);
     }
     
     @RequestMapping( method = RequestMethod.GET,params={"query","order"})
@@ -45,6 +45,6 @@ public class ApplicationRestController {
         
         );
         
-        return appdb.findByOrganizationIdAndNameContaining(orgId,query,sorted);
+        return appService.findByOrganizationIdAndNameContaining(orgId,query,sorted);
 	}
 }

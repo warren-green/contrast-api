@@ -1,5 +1,6 @@
 package com.github.warrengreen.contrastapi.exceptions;
 
+import org.springframework.data.mapping.PropertyReferenceException;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -12,7 +13,7 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExcep
 public class RestExceptionHandler 
   extends ResponseEntityExceptionHandler {
 
-    @ExceptionHandler(value = { ResourceNotFoundException.class })
+    @ExceptionHandler(value = { ResourceNotFoundException.class,PropertyReferenceException.class })
     protected ResponseEntity<Object> handleConflict(
       RuntimeException ex, WebRequest request) {
         return handleExceptionInternal(ex, ex.getMessage(), 
